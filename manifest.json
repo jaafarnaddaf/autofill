@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Autofill Extensions",
+  "description": "Autofill Extension",
+  "version": "1.0",
+  "action": {
+    "default_popup": "autofill.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "scripts/execute-script.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "file:///*/*"
+      ]
+    }
+  ]
+}
