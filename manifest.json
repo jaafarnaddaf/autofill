@@ -1,5 +1,6 @@
 {
   "manifest_version": 3,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArGrGNZkR+hUYX4/cvwhjUut96ckIOpPGFqS7kax+E8rCDJYbI8r3sqE3P5JcLCzuRmY6GdGftiRQ8Rjx0pcRIhdUT5lDO44z4Nqu+vuMeseLw+WZwpaKwCIwQG870bi6wK6vbVaJ/2tCAFtgcSyjj8HcDWh+yy5T9mbkY+d1biXqi9voGYBUBHgCG6qW8AIty70VgYihIAIW+LpWIyH8fMVPcCMuu/Bm9rtV1MnplDxMJrwLP432+Y4NL4v2/9gr9YQrdtp+u3CHie+Y12fQb3fgGmtsiS00OT6qGMEP008OodRd5MTTlWvs+sFyt6pCTxgeEB/68Krn9LgaDG7OYwIDAQAB",
   "name": "Autofill Extensions",
   "description": "Autofill Extension",
   "version": "1.0",
@@ -9,7 +10,7 @@
   "content_scripts": [
     {
       "js": [
-        "scripts/execute-script.js"
+        "scripts/content.js"
       ],
       "matches": [
         "http://*/*",
@@ -18,7 +19,25 @@
       ]
     }
   ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "content_security_policy": {
     "extension_pages": "script-src 'self'"
-  }
+  },
+  "host_permissions": [
+    "http://localhost:8080/*"
+  ],
+  "icons": {
+    "128": "img/fms.webp"
+  },
+  "permissions": [
+    "identity",
+    "contextMenus",
+    "activeTab",
+    "storage",
+    "declarativeContent",
+    "scripting"
+  ]
 }

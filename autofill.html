@@ -1,18 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <title>Autofill Extension</title>
 </head>
-<body>
-<h1>Autofill Extension</h1>
-<form>
-    <label for="name">Name:</label>
-    <input type="text" id="name"><br><br>
-    <label for="email">Email:</label>
-    <input type="email" id="email"><br><br>
-    <button id="save">Save</button>
-</form>
-<script type="module" src="firebase.js"></script>
-<script src="execute-script.js"></script>
+<body style="min-width: 200px;">
+<div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+    <div class="bd-code-snippet">
+        <div class="text-center p-2"><img src="/img/fms.jpg" height="50"></div>
+        <div class="row m-2" id="profile-row" hidden>
+            <a class="btn btn-danger" href="http://localhost:8080" target="_blank">Edit Profile</a>
+        </div>
+        <div class="row m-2 google-btn" id="login-row">
+            <div class="google-icon-wrapper">
+                <img class="google-icon"
+                     src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+            </div>
+            <p class="btn-text text-center ps-5"><small><b>Sign in with google</b></small></p>
+        </div>
+        <!--        <form>-->
+        <!--            <label for="first-name">First Name</label>-->
+        <!--            <input type="text" id="first-name"/><br/><br/>-->
+        <!--            <label for="last-name">Last Name</label>-->
+        <!--            <input type="text" id="last-name"/><br/><br/>-->
+        <!--            <label for="sin">Social Insurance Number (SIN)</label>-->
+        <!--            <input type="text" id="sin"/><br/><br/>-->
+        <!--            <label for="date-of-birth">Date of Birth</label>-->
+        <!--            <input type="text" id="date-of-birth"/><br/><br/>-->
+        <!--            <label for="tel-home">Telephone (Home)</label>-->
+        <!--            <input type="text" id="tel-home"/><br/><br/>-->
+        <!--            <label for="tel-work">Telephone (Work)</label>-->
+        <!--            <input type="text" id="tel-work"/><br/><br/>-->
+        <!--            <div>Mailing Address</div>-->
+        <!--            <label for="address-mail-apt">Apt. No.</label>-->
+        <!--            <input type="text" id="address-mail-apt"/><br/><br/>-->
+        <!--            <label for="address-mail-street-number">Street No.</label>-->
+        <!--            <input type="text" id="address-mail-street-number"/><br/><br/>-->
+        <!--            <label for="address-mail-street-name">Street Name</label>-->
+        <!--            <input type="text" id="address-mail-street-name"/><br/><br/>-->
+        <!--            <label for="address-mail-pobox">P.O. Box</label>-->
+        <!--            <input type="text" id="address-mail-pobox"/><br/><br/>-->
+        <!--            <label for="address-mail-city">City</label>-->
+        <!--            <input type="text" id="address-mail-city"/><br/><br/>-->
+        <!--            <label for="address-mail-province">Province</label>-->
+        <!--            <input type="text" id="address-mail-province"/><br/><br/>-->
+        <!--            <label for="address-mail-postal-code">Postal Code</label>-->
+        <!--            <input type="text" id="address-mail-postal-code"/><br/><br/>-->
+        <!--            <label for="primary-language">Primary Language</label>-->
+        <!--            <input type="text" id="primary-language"/><br/><br/>-->
+        <!--            <div>Home Address</div>-->
+        <!--            <label for="address-home-apt">Apt. No.</label>-->
+        <!--            <input type="text" id="address-home-apt"/><br/><br/>-->
+        <!--            <label for="address-home-street-number">Street No.</label>-->
+        <!--            <input type="text" id="address-home-street-number"/><br/><br/>-->
+        <!--            <label for="address-home-street-name">Street Name</label>-->
+        <!--            <input type="text" id="address-home-street-name"/><br/><br/>-->
+        <!--            <label for="address-home-pobox">P. O. Box</label>-->
+        <!--            <input type="text" id="address-home-pobox"/><br/><br/>-->
+        <!--            <label for="address-home-city">City</label>-->
+        <!--            <input type="text" id="address-home-city"/><br/><br/>-->
+        <!--            <label for="address-change-date">Address Change Date</label>-->
+        <!--            <input type="text" id="address-change-date"/><br/><br/>-->
+        <!--            <label for="marital-status">Marital status on the date you became a resident of Canada</label>-->
+        <!--            <input type="text" id="marital-status"/><br/><br/>-->
+        <!--            <label for="marital-status-date">Marital status change date (leave the date blank if you have always been-->
+        <!--                single).</label>-->
+        <!--            <input type="text" id="marital-status-date"/><br/><br/>-->
+        <!--            <label for="marital-status-resident">Changed marital status since becoming a resident of Canada</label>-->
+        <!--            <input type="text" id="marital-status-resident"/><br/><br/>-->
+        <!--            <label for="marital-status-resident-date">Changed marital status date</label>-->
+        <!--            <input type="text" id="marital-status-resident-date"/><br/><br/>-->
+        <!--            <div>Spouse</div>-->
+        <!--            <label for="first-name-spouse">First Name</label>-->
+        <!--            <input type="text" id="first-name-spouse"/><br/><br/>-->
+        <!--            <label for="last-name-spouse">Last Name</label>-->
+        <!--            <input type="text" id="last-name-spouse"/><br/><br/>-->
+        <!--            <label for="sin-spouse">Social Insurance Number (SIN)</label>-->
+        <!--            <input type="text" id="sin-spouse"/><br/><br/>-->
+        <!--            <label for="date-of-birth-spouse">Date of Birth</label>-->
+        <!--            <input type="text" id="date-of-birth-spouse"/><br/><br/>-->
+        <!--            <div>Spouse Address (If different than yours)</div>-->
+        <!--            <label for="address-spouse-apt">Apt. No</label>-->
+        <!--            <input type="text" id="address-spouse-apt"/><br/><br/>-->
+        <!--            <label for="address-spouse-street-number">Street Number</label>-->
+        <!--            <input type="text" id="address-spouse-street-number"/><br/><br/>-->
+        <!--            <label for="address-spouse-street-name">Street No.</label>-->
+        <!--            <input type="text" id="address-spouse-street-name"/><br/><br/>-->
+        <!--            <label for="address-spouse-pobox">P.O. Box</label>-->
+        <!--            <input type="text" id="address-spouse-pobox"/><br/><br/>-->
+        <!--            <label for="address-spouse-city">City</label>-->
+        <!--            <input type="text" id="address-spouse-city"/><br/><br/>-->
+        <!--            <div>Residency Status</div>-->
+        <!--            <div>Newcomer to Canada</div>-->
+        <!--            <label for="resident-date">The date you became a resident</label>-->
+        <!--            <input type="text" id="resident-date"/><br/><br/>-->
+        <!--            <label for="resident-spouse-date">The date your spouse became a resident</label>-->
+        <!--            <input type="text" id="resident-spouse-date"/><br/><br/>-->
+        <!--            <label for="resident-return-province">resident-return-province</label>-->
+        <!--            <input type="text" id="resident-return-province"/><br/><br/>-->
+        <!--            <label for="resident-return-province-spouse">resident-return-province-spouse</label>-->
+        <!--            <input type="text" id="resident-return-province-spouse"/><br/><br/>-->
+        <!--            <label for="resident-non-date">resident-non-date</label>-->
+        <!--            <input type="text" id="resident-non-date"/><br/><br/>-->
+        <!--            <label for="resident-non-date-spouse">resident-non-date-spouse</label>-->
+        <!--            <input type="text" id="resident-non-date-spouse"/><br/><br/>-->
+        <!--            <label for="resident-re-date">resident-re-date</label>-->
+        <!--            <input type="text" id="resident-re-date"/><br/><br/>-->
+        <!--            <label for="resident-re-date-spouse">resident-re-date-spouse</label>-->
+        <!--            <input type="text" id="resident-re-date-spouse"/><br/><br/>-->
+        <!--            <label for="year-resident">year-resident</label>-->
+        <!--            <input type="text" id="year-resident"/><br/><br/>-->
+        <!--            <label for="income-year-resident">income-year-resident</label>-->
+        <!--            <input type="text" id="income-year-resident"/><br/><br/>-->
+        <!--            <label for="income-year">income-year</label>-->
+        <!--            <input type="text" id="income-year"/><br/><br/>-->
+        <!--            <label for="income-year-spouse">income-year-spouse</label>-->
+        <!--            <input type="text" id="income-year-spouse"/><br/><br/>-->
+        <!--            <label for="income-1-resident">income-1-resident</label>-->
+        <!--            <input type="text" id="income-1-resident"/><br/><br/>-->
+        <!--            <label for="income-1">income-1</label>-->
+        <!--            <input type="text" id="income-1"/><br/><br/>-->
+        <!--            <label for="income-1-spouse">income-1-spouse</label>-->
+        <!--            <input type="text" id="income-1-spouse"/><br/><br/>-->
+        <!--            <label for="income-2-resident">income-2-resident</label>-->
+        <!--            <input type="text" id="income-2-resident"/><br/><br/>-->
+        <!--            <label for="income-2">income-2</label>-->
+        <!--            <input type="text" id="income-2"/><br/><br/>-->
+        <!--            <label for="income-2-spouse">income-2-spouse</label>-->
+        <!--            <input type="text" id="income-2-spouse"/><br/><br/>-->
+
+        <!--            <button id="save">Save</button>-->
+        <!--        </form>-->
+    </div>
+</div>
+<script src="scripts/content.js" type="module"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
